@@ -1,0 +1,43 @@
+max_list2([],[]).                     % Daca lista este goala returneaza lista goala
+
+max_list2([Min],Min).                 % Daca are un singur element este minimul
+
+max_list2([H,K|T],M) :-
+    H >= K,                         % Daca H este <= decat urmatorul element il pastreaza pe H
+    max_list2([H|T],M).              % nu il mai adauga pe K
+
+max_list2([H,K|T],M) :-
+    H < K,                           %Daca H este > K nu il mai adauga pe H
+    max_list2([K|T],M).               % compara K cu restul listei
+
+
+add_head([],X,[X]).
+add_head(L,X,[X|L]).
+
+ vecin_impar([_]):- true.
+ vecin_impar([H,T|T2]):- T mod 2=\=0.
+vecin_par([H,T|T2]):- T mod 2 =:=0.
+vecin_par([_]):-true.
+
+
+secventa([],_).
+secventa([H|T],R):-
+    H mod 2=\=0,
+    vecin_impar([H|T]),
+    secventa(T,R).
+
+secventa([H|T],R):-
+    H mod 2=\=0,
+    vecin_par([H|T]),
+    secventa(T,RT),
+    add_head(RT,H,R).
+
+secventa([H|T],R):-
+    H mod 2=:=0,
+    secventa(T,RT),
+    add_head(RT,H,R).
+
+main2(List,R):-
+    secventa(List,R),
+    max_list2(R,Max),
+    writeln(Max).

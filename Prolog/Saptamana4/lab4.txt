@@ -1,0 +1,23 @@
+[1,[1,2,3,5],[a,b,c],5,6,a,b] - lista eterogena
+
+a)[a,b,c] -> [a,a,b,b,c,c]
+
+transformList(L,R):-...
+
+b)transfB([H|T],R):-... 
+atom(H),
+transfB(T,Rp),
+R= [H,H|Rp].
+
+transfB([H|T],R):-... 
+is_list(H),
+transformList(H,Rp),
+transfB(T,Rp),
+R= [R1|Rp].
+
+transfB([H|T],R):-... 
+number(H),
+transfB(T,Rp),
+R= [H,H|Rp].
+
+transfB([],[]).

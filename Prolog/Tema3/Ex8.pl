@@ -1,0 +1,37 @@
+/*
+ * subpunctul a)
+*/
+
+reverse([],ListResult,ListResult).
+reverse([Head|Tail],ListResult,List):-
+reverse(Tail,ListResult,[Head|List]).
+
+sum([],1,[1]).
+sum([],_,[]):- !.
+sum([Head|Tail],Tr,[Sum|ListResult]):-
+    S is Head+Tr,
+    Sum is S mod 10,
+    Tr1 is S div 10,
+    sum(Tail,Tr1,ListResult).
+
+succesor(InitList,ResultList):-
+    reverse(InitList,TempList,[]),
+    sum(TempList,1,TempList2),
+    reverse(TempList2,ResultList,[]).
+
+/*
+ * subpunctul b)
+*/
+
+push_front(Item, List, [Item|List]).
+
+succesor_eterogen([],[]).
+succesor_eterogen([Head|Tail],Result):-
+    is_list(Head),
+    succesor(Head,ListR),
+    succesor_eterogen(Tail,TempR),
+    push_front(ListR,TempR,Result).
+
+succesor_eterogen([Head|Tail],Result):-
+    succesor_eterogen(Tail,ListR),
+    Result=[Head|ListR].

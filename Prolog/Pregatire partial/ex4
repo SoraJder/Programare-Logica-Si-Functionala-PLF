@@ -1,0 +1,6 @@
+max_list([Max],Max).
+
+max_list([Head|Tail],Max):-
+ max_list(Tail,TailMax),
+ Head>TailMax,
+

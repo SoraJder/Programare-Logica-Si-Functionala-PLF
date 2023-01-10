@@ -1,0 +1,43 @@
+Lab 1 PLF
+
+Ex 1
+
+Calculați numărul de apariții al unui element într-o listă.
+Ex. occurrences ([1,2,3,4,5,2,4,2,2],2) = 4
+      occurrences ([4,5,6,4,5],6) = 1
+
+
+nrOcc(l1...ln, val) = { 0 - lista goala, 1+nrOcc(l2..ln, val), nrOcc(l2..ln) }, returneaza numar
+
+Ex 2
+
+Fiind dată o listă, transformați lista astfel: 
+Înmulțiți cu 5 numerele pare
+Scădeți 5 din numerele impare
+
+transf(l1..ln) = { [] - lista goala, (l1*5) reunit transf([l2..ln]) daca l1 este par, (l1-5) reunit transf[l2..ln] daca l1 este impar}
+
+Ex 3
+
+Fiind dată o listă, adăugați după fiecare element de pe poziții pare suma cifrelor impare ale elementului respectiv. Primul element al listei se află pe poziția 1.
+Ex. addAfterOddElem([1,2,13,297,543,63]) = [1,2,0, 13, 65, 5, 297, 543, 8, 63]
+
+varianta 1
+
+add(l1..ln , poz) = { [] - lista goala, l1 reunit cu sumDigit(l1) reunit cu add(l2..ln, poz+1) - daca poz%2==0, l1 reunit add(l2..ln, poz+1) - altfel }
+
+varianta 2
+
+add(l1..ln , poz) = { [] - lista goala,l1- daca l1 este singurul element, l1 reunit l2 reunit sumDigit(l2) reunit add (l3..ln) - altfel }
+
+Ex 4
+
+Să se adauge un element la sfârșitul unei liste.
+
+addEnd(l1..ln, val) = {[val] - lista goala, l1 reunit addEnd(l2..ln, val) - altfel} 
+
+Ex 5
+
+Să se șteargă aparițiile unui element dintr-o listă.
+
+stergere(l1..ln, val) = { [] - lista goala, stergere( l2..ln, val) - l1=val , l1 reunit  stergere(l2..ln,val) - altfel }

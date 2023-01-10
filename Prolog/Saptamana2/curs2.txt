@@ -1,0 +1,12 @@
+[H|T]
+
+H- head
+T- tail
+variabile anonime - nu ne intereseaza valoarea lor
+trace - rularea programului pas cu pas
+
+[1,2,3,4] -> [H|T] => H= 1 , T=[2,3,4]
+[1] -> H=1, T=[]
+
+operatorul is se uita in dreapta
+
