@@ -1,0 +1,121 @@
+;;
+;; Binary Trees
+;;
+
+;;
+;; Constructors for binary trees
+;;
+
+(defun make-bin-tree-leaf (E)
+  "Create a leaf."
+  (list E))
+
+(defun make-bin-tree-node (E B1 B2)
+  "Create a node with element K, left subtree B1 and right subtree B2."
+  (list E B1 B2))
+
+;;
+;; Selectors for binary trees
+;;
+
+(defun bin-tree-leaf-element (L)
+  "Retrieve the element of a leaf L."
+  (first L))
+
+(defun bin-tree-node-element (N)
+  "Retrieve the element of a node N."
+  (first N))
+
+(defun bin-tree-node-left (N)
+  "Retrieve the left subtree of a node N."
+  (second N))
+
+(defun bin-tree-node-right (N)
+  "Retrieve the right subtree of a node N."
+  (third N))
+
+;;
+;; Recognizers for binary trees
+;;
+
+(defun bin-tree-leaf-p (B)
+  "Test if binary tree B is a leaf."
+  (and (listp B) (= (list-length B) 1)))
+
+(defun bin-tree-node-p (B)
+  "Test if binary tree B is a node."
+  (and (listp B) (= (list-length B) 3)))
+
+
+"""
+Example: (* (+ (2) (3)) (- (7) (8)))
+
+
+
+            *
+           / \
+          /   \
+         /     \
+        -       +
+       / \     / \
+      8   7   3   2
+
+"""
+
+"""
+
+Ex 15 
+Enunt: Parcurgerea in postordine a unui arbore de tipul (2)
+
+Model matematic:
+postorder-traversal (l1..ln)
+ l1, daca l1 e frunza
+ return postorder-traversal (car l1) reunit postorder-traversal (cdr l1) reunit cu l1, altfel
+
+Cazuri testare:
+
+(setq x (make-bin-tree-node '1
+                             (make-bin-tree-node '2
+                                                 (make-bin-tree-leaf 4)
+                                                 (make-bin-tree-leaf 5))
+                             (make-bin-tree-node '3
+                                                 (make-bin-tree-leaf 6)
+                                                 (make-bin-tree-node '7
+                                                                     (make-bin-tree-leaf nil)
+                                                                     (make-bin-tree-leaf 8))))) 
+
+(setq x (make-bin-tree-node 'A 
+                            (make-bin-tree-leaf 'B)
+                            (make-bin-tree-node 'C 
+                                                (make-bin-tree-leaf 'D)
+                                                (make-bin-tree-leaf 'E))))
+(setq x (make-bin-tree-node '1
+                             (make-bin-tree-node '2
+                                                 (make-bin-tree-leaf 4)
+                                                 (make-bin-tree-leaf 5))
+                             (make-bin-tree-leaf 3)))
+
+"""
+
+(setq x (make-bin-tree-node '1
+                             (make-bin-tree-node '2
+                                                 (make-bin-tree-leaf 4)
+                                                 (make-bin-tree-leaf 5))
+                             (make-bin-tree-leaf 3)))
+
+;;
+;; Postorder
+;;
+
+(defun postorder-traversal (bin)
+       (if (bin-tree-leaf-p bin)
+           bin
+         (let
+             ((right (bin-tree-node-right bin))
+              (left (bin-tree-node-left bin))
+              (elmt (bin-tree-node-element bin)))
+           (make-bin-tree-node (postorder-traversal left)
+                               (postorder-traversal right)
+                               elmt))))
+
+(print (postorder-traversal x))

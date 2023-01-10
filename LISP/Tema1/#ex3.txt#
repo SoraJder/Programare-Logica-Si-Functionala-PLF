@@ -1,0 +1,22 @@
+(defun counter (l elem n)
+  (cond 
+   ((null l) n)
+   ((equal (car l) elem) (counter (cdr l) elem (+ n 1)))
+   (t (counter (cdr l) elem n))))
+
+(defun eliminateDuplicates (l)
+  (cond ((null l) nil)
+        ((member (car l) (cdr l))
+         (eliminateDuplicates (cdr l)))
+        (t (cons (car l) (eliminateDuplicates (cdr l))))))
+
+(defun resolve (l1 l2)
+  (if (not (equal '() l2))
+      (progn
+        (setq res (cons (car l2) (cons (counter l1 (car l2) 0) '())))
+        (print res)
+        (resolve l1 (cdr l2)))))
+
+(defun main3 (list)
+  (resolve list (eliminateDuplicates list))
+)

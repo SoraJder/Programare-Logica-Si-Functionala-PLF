@@ -1,0 +1,43 @@
+;;;;Scrieti o functie care transforma o lista liniara intr-una de forma: [(element, numar_de_aparitii_element)].
+
+;;;;Exemplu: (A B A B A C A) --> ((A 4) (B 2) (C 1)) 
+
+;;;;Model matematic
+
+;;;; n=0
+;;;; counter(l elem n)
+;;;;n, daca []
+;;;;counter(l2..ln elem n++), daca l1=elem
+;;;;counter( l2..ln elem n) altfel
+
+;;;;eliminateDuplicates (n)
+;;;;[], daca []
+;;;;eliminateDuplicates(l2..ln), daca member(l1 l2..ln)
+;;;;l1 reunit eliminateDuplicates(l2..ln), altfel
+
+;;;;resolve (l1..ln k1..kn)
+;;;;[], daca k1..kn=[]
+;;;;{ res = (k1 (counter l1..ln k1 0))}, print res, resolve(l1..ln, k2..kn)} altfel
+
+(defun counter (l elem n))
+  (cond 
+   ((null l) n)
+   ((equal (car l) elem) (counter (cdr l) elem (+ n 1)))
+   (t (counter (cdr l) elem n))))
+
+(defun eliminateDuplicates (l)
+  (cond ((null l) nil)
+        ((member (car l) (cdr l))
+         (eliminateDuplicates (cdr l)))
+        (t (cons (car l) (eliminateDuplicates (cdr l))))))
+
+(defun resolve (l1 l2)
+  (if (not (equal '() l2))
+      (progn
+        (setq res (cons (car l2) (cons (counter l1 (car l2) 0) '())))
+        (print res)
+        (resolve l1 (cdr l2)))))
+
+(defun main3 (list)
+  (resolve list (eliminateDuplicates list))
+)

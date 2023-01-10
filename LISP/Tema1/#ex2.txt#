@@ -1,0 +1,8 @@
+;;;;(check_element '(1 ((2 3) 4)(5 6) 7) 6 )
+
+(defun check_element (list val)
+  (cond
+   ((null list) nil)
+   ((check_element (cdr list) val))
+   ((listp (car list)) (check_element (car list) val))
+   (t (equal (car list) val))))

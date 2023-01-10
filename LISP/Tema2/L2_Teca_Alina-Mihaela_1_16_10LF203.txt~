@@ -1,0 +1,35 @@
+;;;; Ex 1.
+;;;;Scrieti o functie care sa verifice daca un atom este membru intr-o list neliniara (se vor lua in considerare elementele din subliste).
+
+;;;;Model matematic
+;;;; setq x
+;;;; check (l1..ln)
+;;;; true, l1 atom && l1 = x
+;;;; check (l1), daca (listp l1)
+
+(setq x 'a)
+
+(defun check (l)
+  (cond
+   ((and (atom l) (equal l x)))
+   ((listp l) (mapcar 'check l))
+))
+
+(defun ex1 (list)
+(mapcar 'check list))
+
+;;;; Ex 16.
+;;;; Scrieti o functie care transforme o lista neliniara intr-o lista liniara, scriind elementele in ordinea aparitiei
+;;;; Exemplu: (((A B) C) (D E)) --> (A B C D E) 
+
+;;;;Model matematic
+;;;; ex16(l1..ln)
+;;;;[], daca []
+;;;;(l1), daca (atom l1)
+;;;;(ex16(l1)) altfel
+ 
+(defun ex16(li)
+  (cond
+   ((null li)nil)
+   ((atom li) (list li))
+   (t (mapcan 'ex16 li))))

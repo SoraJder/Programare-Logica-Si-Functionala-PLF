@@ -1,0 +1,19 @@
+;;;;Scrieti o functie care sa verifice daca elementul E face parte dintr-o lista, care nu este neaparat liniara. 
+
+;;;;Model matematic
+;;;;check_element (l1..ln, val)
+;;;; [], daca []
+;;;; check_element(l2..ln,val)
+;;;; check_element(l1 , val), daca (listp l1)
+;;;;true, daca l1 = val
+
+;;;;(check_element '(1 ((2 3) 4)(5 6) 7) 6 )
+
+(defun check_element (list val)
+  (cond
+   ((null list) nil)
+   ((check_element (cdr list) val))
+   ((listp (car list)) (check_element (car list) val))
+   (t (equal (car list) val))
+   )
+)

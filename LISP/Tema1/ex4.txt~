@@ -1,0 +1,12 @@
+
+;;;;(main4 '(1 2 (3 (4 5)(6 7)) 8 (9 10)))
+
+(defun resolve_ex4(list)
+  (cond 
+   ((null list) nil)
+   ((listp (car list))(print (car list))(resolve_ex4 (car list)) (resolve_ex4(cdr list)))
+   (t(atom (car list)) (resolve_ex4 (cdr list)))))
+
+(defun main4 (list)
+ (print list)
+ (resolve_ex4 list))
