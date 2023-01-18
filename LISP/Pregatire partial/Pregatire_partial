@@ -1,0 +1,36 @@
+(defun rev (l)
+  (cond
+   ((null l) '())
+   (t (append (rev (cdr l)) (list (car l))))))
+
+(defun palindrom (list)
+(equal list (rev list)))
+
+(defun maximum (l)
+  (if (= (length l) 1)
+      (car l)
+      (if (> (car l) (maximum (cdr l)))
+          (car l)
+          (maximum (cdr l)))))(defun maxi (list)
+
+(defun last_element (list)
+  (cond
+   ((= (length list) 1) (car list))
+   ((last_element (cdr list)))))
+
+(defun last_2elements (list)
+  (cond
+   ((null list)nil)
+   ((= (length list) 1)nil)
+   ((= (length list) 2) list)
+   ((last_2elements (cdr list)))))
+
+(defun element-at (list k)
+  (cond
+   ((= k 1) (car list))
+    (list (element-at (cdr list) (1- k)))))
+
+(defun my-flatten (list)
+   (cond ((atom list) (list list))
+        (list (append (my-flatten (car list))
+                      (my-flatten (cdr list))))))

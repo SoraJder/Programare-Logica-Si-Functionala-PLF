@@ -1,0 +1,25 @@
+(defun produsImpare (list)
+  (cond
+   ((null list) 1)
+   (t (* (car list)(produsImpare (cdr (cdr list)))))
+))
+
+
+(defun mainNota5 (list)
+  (produsImpare list)
+)
+
+(defun produs (list)
+(cond
+((null list)1)
+((* (car list) (produs (cdr list))))))
+
+(defun compress (list)
+  (if (cdr list)
+      (if (eq (car list) (cadr list))
+          (compress (cdr list))
+          (cons (car list) (compress (cdr list))))
+      list))
+
+(defun mainEx1 (list)
+(compress list))

@@ -1,0 +1,20 @@
+(defun frunze (arbore)
+  (cond
+   ((null arbore) 0)
+   ((and (null (car (cdr arbore))) (null (car (cdr (cdr arbore))))) 1)
+   (t (+ (frunze (car (cdr arbore))) (frunze (car (cdr (cdr arbore))))))
+   )
+  )
+
+(write (frunze '(1 (2 (4)) (5 (6) (7)))))
+
+(defun afisare_frunze (arbore)
+  (cond
+   ((null arbore) ())
+   ((and (null (car (cdr arbore))) (null (car (cdr (cdr arbore))))) (list arbore))
+   (t (append (afisare_frunze (car (cdr arbore))) (afisare_frunze (car (cdr (cdr arbore))))))
+   )
+  )
+
+(write (afisare_frunze '(1 (2 (4)) (5 (6) (7)))))
+

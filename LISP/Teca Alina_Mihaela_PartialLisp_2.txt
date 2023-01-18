@@ -1,0 +1,17 @@
+;;;; model matematic
+;;; pack (l1..ln)
+;;;; [], daca l2..ln null
+;;;l1 reunit pack (l2..ln), daca l1 =l2,
+;;;altfel pack(l2..ln)
+
+(defun pack (list)
+  (if (cdr list)
+      (let ((res (pack (cdr list))))
+        (if (eq (car list) (cadr list))
+            (cons (cons (car list) (car res)) (cdr res))
+            (cons (list (car list)) res)))
+      (when list (list list))))
+
+(defun main (list)
+  (pack list)
+)

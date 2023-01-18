@@ -1,0 +1,9 @@
+(defun addN (list elem pos n)
+  (cond
+   ((null list) nil)
+   ((equal 0 (mod pos n)) (cons elem (addN list elem (+ 1 pos) n)))
+  (t (cons (car list) (addN (cdr list) elem (+ 1 pos) n)))))
+
+(defun addNMain (list elem n)
+  (addN list elem 1 n)
+)
